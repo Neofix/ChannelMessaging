@@ -1,6 +1,7 @@
 package com.fernandes.damien.channelmessaging;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -8,12 +9,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
 import java.util.HashMap;
 
 public class LoginActivity extends Activity implements View.OnClickListener, OnDownloadListener {
     private EditText EditNom;
     private EditText EditPwd;
     private Button ButtonValider;
+    public static final String PREFS_NAME = "MyPrefsFile";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +51,18 @@ public class LoginActivity extends Activity implements View.OnClickListener, OnD
 
     public void OnDownloadComplete(String result)
     {
-        Toast.makeText(getApplicationContext(),result, Toast.LENGTH_SHORT).show();
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        Gson gson = new Gson();
+        SharedPreferences.Editor editor = settings.edit();
+        Retour leRetour = gson.fromJson(result, Retour.class);
+        String accesstoken = leRetour.getAccesstoken();
+        String message="";
+        if(leRetour.getCode()==200)
+            message="Connexion réussie !";
+        else
+            message="Erreur : "+ leRetour.getResponse();
+        editor.putString("accesstoken",accesstoken);
+        editor.commit();
+        Toast.makeText(getApplicationContext(),message, Toast.LENGTH_SHORT).show();
     }
 }

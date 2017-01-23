@@ -1,6 +1,7 @@
 package com.fernandes.damien.channelmessaging;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -49,20 +50,33 @@ public class LoginActivity extends Activity implements View.OnClickListener, OnD
         }
     }
 
-    public void OnDownloadComplete(String result)
-    {
+    public void OnDownloadComplete(String result) {
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
         Gson gson = new Gson();
+        boolean isConnected = false;
         SharedPreferences.Editor editor = settings.edit();
         Retour leRetour = gson.fromJson(result, Retour.class);
         String accesstoken = leRetour.getAccesstoken();
-        String message="";
-        if(leRetour.getCode()==200)
-            message="Connexion réussie !";
-        else
-            message="Erreur : "+ leRetour.getResponse();
+        String message = "";
+        if (leRetour.getCode() == 200) {
+            message = "Connexion réussie !";
+            isConnected = true;
+        }
+        else {
+            message = "Erreur : " + leRetour.getResponse();
+            isConnected = false;
+        }
         editor.putString("accesstoken",accesstoken);
         editor.commit();
         Toast.makeText(getApplicationContext(),message, Toast.LENGTH_SHORT).show();
+        if(isConnected)
+        {
+            startChannelListActivity();
+        }
+    }
+
+    public void startChannelListActivity(){
+        Intent myIntent = new Intent(getApplicationContext(), ChannelListActivity.class);
+        startActivity(myIntent);
     }
 }

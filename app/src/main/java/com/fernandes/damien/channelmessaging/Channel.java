@@ -5,4 +5,19 @@ package com.fernandes.damien.channelmessaging;
  */
 
 public class Channel {
+    private int channelID;
+    private String name;
+    private int connectedusers;
+
+    public int getChannelID() {
+        return channelID;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getConnectedusers() {
+        return connectedusers;
+    }
 }

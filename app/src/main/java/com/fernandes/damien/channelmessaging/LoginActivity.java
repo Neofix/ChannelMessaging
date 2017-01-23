@@ -32,8 +32,8 @@ public class LoginActivity extends Activity implements View.OnClickListener, OnD
         ButtonValider = (Button) findViewById(R.id.buttonValider);
         ButtonValider.setOnClickListener(this) ;
 
-
-
+        EditNom.setText("dfern");
+        EditPwd.setText("damienfernandes");
 
     }
 
@@ -43,7 +43,7 @@ public class LoginActivity extends Activity implements View.OnClickListener, OnD
             HashMap<String,String> login = new HashMap<>();
             login.put("username", EditNom.getText().toString());
             login.put("password", EditPwd.getText().toString());
-            Downloader d = new Downloader(getApplicationContext(), login);
+            Downloader d = new Downloader(getApplicationContext(), "http://www.raphaelbischof.fr/messaging/?function=connect", login);
             d.setOnDownloadComplete(this);
             d.execute();
 

@@ -24,18 +24,20 @@ import javax.net.ssl.HttpsURLConnection;
 
 public class Downloader extends AsyncTask<Long,Integer,String> {
     Context context;
-    HashMap<String, String> login = new HashMap<>();
+    HashMap<String, String> param = new HashMap<>();
+    String url;
     ArrayList<OnDownloadListener> listeners = new ArrayList<>();
 
 
-    public Downloader(Context aContext, HashMap<String, String> alogin) {
-        this.login = alogin;
+    public Downloader(Context aContext, String aUrl, HashMap<String, String> aParam) {
+        this.param = aParam;
+        this.url=aUrl;
         this.context = aContext;
     }
 
     @Override
     protected String doInBackground(Long... params) {
-        return performPostCall("http://www.raphaelbischof.fr/messaging/?function=connect", login);
+        return performPostCall(url, param);
     }
 
     @Override

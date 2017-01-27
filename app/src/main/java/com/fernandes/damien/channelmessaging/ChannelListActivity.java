@@ -1,8 +1,11 @@
 package com.fernandes.damien.channelmessaging;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -15,7 +18,7 @@ import java.util.HashMap;
  * Created by damien on 23/01/17.
  */
 
-public class ChannelListActivity extends Activity implements OnDownloadListener{
+public class ChannelListActivity extends Activity implements OnDownloadListener, AdapterView.OnItemClickListener{
     private ListView listechannel ;
     private String accesstoken;
     Channels channels = new Channels();
@@ -39,7 +42,6 @@ public class ChannelListActivity extends Activity implements OnDownloadListener{
         d.setOnDownloadComplete(this);
         d.execute();
 
-        //listechannel.setAdapter(new ArrayAdapter(getApplicationContext(), R.layout.activity_channellist, ));
     }
 
 
@@ -47,5 +49,14 @@ public class ChannelListActivity extends Activity implements OnDownloadListener{
     public void OnDownloadComplete(String result) {
         Gson gson = new Gson();
         channels=gson.fromJson(result, Channels.class);
+
+        listechannel.setAdapter(new MyChannelArrayAdapter(getApplicationContext(), R.layout.activity_channellist, channels.getChannels()));
+
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Intent myIntent = new Intent(getApplicationContext(), ChannelConvActivity.class);
+        startActivity(myIntent);
     }
 }

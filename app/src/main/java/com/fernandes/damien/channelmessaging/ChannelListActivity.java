@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 
@@ -41,7 +42,7 @@ public class ChannelListActivity extends Activity implements OnDownloadListener,
         Downloader d = new Downloader(getApplicationContext(), "http://www.raphaelbischof.fr/messaging/?function=getchannels",envoiAccess);
         d.setOnDownloadComplete(this);
         d.execute();
-
+        listechannel.setOnItemClickListener(this);
     }
 
 
@@ -57,6 +58,9 @@ public class ChannelListActivity extends Activity implements OnDownloadListener,
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent myIntent = new Intent(getApplicationContext(), ChannelConvActivity.class);
+        String name = ((TextView) view.findViewById(R.id.textViewTitle)).getText().toString();
+        myIntent.putExtra("id", id);
+        myIntent.putExtra("name", name);
         startActivity(myIntent);
     }
 }

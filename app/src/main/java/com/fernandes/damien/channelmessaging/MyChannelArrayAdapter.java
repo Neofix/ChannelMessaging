@@ -15,11 +15,12 @@ import java.util.List;
 
 public class MyChannelArrayAdapter extends ArrayAdapter<Channel> {
     private final Context context;
-
+    private List<Channel> liste;
 
     public MyChannelArrayAdapter(Context context, int resource, List<Channel> objects) {
         super(context, resource, 0, objects);
         this.context=context;
+        this.liste=objects;
     }
 
     @Override
@@ -27,11 +28,18 @@ public class MyChannelArrayAdapter extends ArrayAdapter<Channel> {
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView = inflater.inflate(R.layout.rowlayoutchannels, parent, false);
+
         TextView title = (TextView) rowView.findViewById(R.id.textViewTitle);
         TextView subtitle = (TextView) rowView.findViewById(R.id.textViewSubTitle);
 
         title.setText(getItem(position).getName());
         subtitle.setText("Nombre d'utilisateurs connectés : " + getItem(position).getConnectedusers());
+
         return rowView;
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return liste.get(position).getChannelID();
     }
 }

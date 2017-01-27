@@ -1,10 +1,12 @@
 package com.fernandes.damien.channelmessaging;
 
+import java.io.Serializable;
+
 /**
  * Created by damien on 23/01/17.
  */
 
-public class Channel {
+public class Channel implements Serializable {
     private int channelID;
     private String name;
     private int connectedusers;

@@ -6,13 +6,11 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -51,7 +49,7 @@ public class ChannelListActivity extends Activity implements OnDownloadListener,
         Gson gson = new Gson();
         channels=gson.fromJson(result, Channels.class);
 
-        listechannel.setAdapter(new MyChannelArrayAdapter(getApplicationContext(), R.layout.activity_channellist, channels.getChannels()));
+        listechannel.setAdapter(new ChannelListArrayAdapter(getApplicationContext(), R.layout.activity_channellist, channels.getChannels()));
 
     }
 
@@ -60,7 +58,7 @@ public class ChannelListActivity extends Activity implements OnDownloadListener,
         Intent myIntent = new Intent(getApplicationContext(), ChannelConvActivity.class);
         String name = ((TextView) view.findViewById(R.id.textViewTitle)).getText().toString();
         myIntent.putExtra("id", id);
-        myIntent.putExtra("name", name);
+        myIntent.putExtra("name", );
         startActivity(myIntent);
     }
 }

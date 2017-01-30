@@ -21,7 +21,7 @@ public class ChannelListActivity extends Activity implements OnDownloadListener,
     private ListView listechannel ;
     private String accesstoken;
     Channels channels = new Channels();
-    private String[] listItem = {};
+
 
     public static final String PREFS_NAME = "MyPrefsFile";
 
@@ -37,7 +37,7 @@ public class ChannelListActivity extends Activity implements OnDownloadListener,
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
         accesstoken = settings.getString("accesstoken", null);
         envoiAccess.put("accesstoken", accesstoken);
-        Downloader d = new Downloader(getApplicationContext(), "http://www.raphaelbischof.fr/messaging/?function=getchannels",envoiAccess);
+        Downloader d = new Downloader(getApplicationContext(), "http://www.raphaelbischof.fr/messaging/?function=getchannels",envoiAccess, 0);
         d.setOnDownloadComplete(this);
         d.execute();
         listechannel.setOnItemClickListener(this);
@@ -45,7 +45,7 @@ public class ChannelListActivity extends Activity implements OnDownloadListener,
 
 
     @Override
-    public void OnDownloadComplete(String result) {
+    public void OnDownloadComplete(String result, int requestcode) {
         Gson gson = new Gson();
         channels=gson.fromJson(result, Channels.class);
 
@@ -57,8 +57,8 @@ public class ChannelListActivity extends Activity implements OnDownloadListener,
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent myIntent = new Intent(getApplicationContext(), ChannelConvActivity.class);
         String name = ((TextView) view.findViewById(R.id.textViewTitle)).getText().toString();
-        myIntent.putExtra("id", id);
-        myIntent.putExtra("name", );
+        myIntent.putExtra("id", this.channels.getChannels().get(position).getChannelID());
+        myIntent.putExtra("name", name);
         startActivity(myIntent);
     }
 }

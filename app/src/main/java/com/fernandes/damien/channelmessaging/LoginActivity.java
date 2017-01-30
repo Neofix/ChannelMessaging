@@ -43,14 +43,14 @@ public class LoginActivity extends Activity implements View.OnClickListener, OnD
             HashMap<String,String> login = new HashMap<>();
             login.put("username", EditNom.getText().toString());
             login.put("password", EditPwd.getText().toString());
-            Downloader d = new Downloader(getApplicationContext(), "http://www.raphaelbischof.fr/messaging/?function=connect", login);
+            Downloader d = new Downloader(getApplicationContext(), "http://www.raphaelbischof.fr/messaging/?function=connect", login, 1);
             d.setOnDownloadComplete(this);
             d.execute();
 
         }
     }
 
-    public void OnDownloadComplete(String result) {
+    public void OnDownloadComplete(String result, int requestcode) {
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
         Gson gson = new Gson();
         boolean isConnected = false;

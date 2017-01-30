@@ -5,5 +5,5 @@ package com.fernandes.damien.channelmessaging;
  */
 
 public interface OnDownloadListener {
-    void OnDownloadComplete(String result);
+    void OnDownloadComplete(String result, int requestcode);
 }

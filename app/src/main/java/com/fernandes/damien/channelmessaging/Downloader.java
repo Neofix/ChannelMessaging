@@ -26,13 +26,15 @@ public class Downloader extends AsyncTask<Long,Integer,String> {
     Context context;
     HashMap<String, String> param = new HashMap<>();
     String url;
+    private int requestcode;
     ArrayList<OnDownloadListener> listeners = new ArrayList<>();
 
 
-    public Downloader(Context aContext, String aUrl, HashMap<String, String> aParam) {
+    public Downloader(Context aContext, String aUrl, HashMap<String, String> aParam, int requestcode) {
         this.param = aParam;
         this.url=aUrl;
         this.context = aContext;
+        this.requestcode=requestcode;
     }
 
     @Override
@@ -44,7 +46,7 @@ public class Downloader extends AsyncTask<Long,Integer,String> {
     protected void onPostExecute(String result) {
         for(OnDownloadListener listener : listeners)
         {
-            listener.OnDownloadComplete(result);
+            listener.OnDownloadComplete(result, requestcode);
         }
 
     }

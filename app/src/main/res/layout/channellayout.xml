@@ -14,15 +14,16 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="10dp"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/darker_gray">
 
         <EditText
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="38dp"
             android:inputType="textPersonName"
             android:ems="10"
             android:id="@+id/editTextmessage"
-            android:layout_weight="1" />
+            android:background="@android:color/white" />
 
         <Button
             android:text="Envoyer"

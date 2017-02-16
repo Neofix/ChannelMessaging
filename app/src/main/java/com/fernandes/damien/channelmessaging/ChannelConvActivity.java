@@ -1,9 +1,13 @@
 package com.fernandes.damien.channelmessaging;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,6 +16,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 
+import java.io.File;
 import java.util.HashMap;
 
 /**
@@ -100,6 +105,15 @@ public class ChannelConvActivity extends Activity implements OnDownloadListener,
             Downloader d = new Downloader(getApplicationContext(), "http://www.raphaelbischof.fr/messaging/?function=sendmessage",envoimsg,1);
             d.setOnDownloadComplete(ChannelConvActivity.this);
             d.execute();
+        }
+        else if (v.getId()==R.id.buttonPhoto)
+        {
+            File f = new File(this.getExternalFilesDir(Environment.DIRECTORY_PICTURES) + "/toto.jpg");
+            // Android a depuis Android Nougat besoin d'un provider pour donner l'accès à un répertoire pour une autre app, cf : http://stackoverflow.com/questions/38200282/android-os-fileuriexposedexception-file-storage-emulated-0-test-txt-exposed
+
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);//Création de l’appel à l’application appareil photo pour récupérer une image
+            //intent.putExtra(MediaStore.EXTRA_OUTPUT, uri); //Emplacement de l’image stockée
+            startActivityForResult(intent, 1);
         }
     }
 }

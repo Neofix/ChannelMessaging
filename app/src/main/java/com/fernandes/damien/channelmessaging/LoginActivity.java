@@ -39,12 +39,12 @@ public class LoginActivity extends Activity implements View.OnClickListener, OnD
 
     @Override
     public void onClick(View v) {
-        if (v.getId()==R.id.buttonValider) {
+        if (v.getId()== R.id.buttonValider) {
             HashMap<String,String> login = new HashMap<>();
             login.put("username", EditNom.getText().toString());
             login.put("password", EditPwd.getText().toString());
             Downloader d = new Downloader(getApplicationContext(), "http://www.raphaelbischof.fr/messaging/?function=connect", login, 1);
-            d.setOnDownloadComplete(this);
+           // d.setOnDownloadComplete(this);
             d.execute();
 
         }

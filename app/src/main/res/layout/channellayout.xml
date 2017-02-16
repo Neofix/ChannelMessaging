@@ -29,7 +29,13 @@
             android:text="Envoyer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/buttonEnvoyer"
+            android:id="@+id/buttonEnvoyer" />
+
+        <Button
+            android:text="Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonPhoto"
             android:layout_weight="1" />
     </LinearLayout>
 </RelativeLayout>

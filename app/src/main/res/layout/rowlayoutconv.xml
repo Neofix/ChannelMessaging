@@ -1,18 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:weightSum="1">
 
-    <TextView
-        android:text="Un User Beauf : "
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/imageViewUser"
+        android:layout_weight="0.09" />
+
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textViewUserName" />
+        android:layout_alignBottom="@+id/imageViewUser"
+        android:layout_toRightOf="@+id/imageViewUser"
+        android:layout_toEndOf="@+id/imageViewUser"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentTop="false">
 
-    <TextView
-        android:text="El Message !"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textViewMessage" />
+        <TextView
+            android:text="Un User Beauf : "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewUserName"
+            android:textColor="#ff0000"
+            android:textStyle="bold" />
 
-</LinearLayout>
+        <TextView
+            android:text="El Message !"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewMessage"
+            android:textColor="@android:color/background_dark" />
+    </LinearLayout>
+
+</RelativeLayout>

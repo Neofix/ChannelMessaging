@@ -3,7 +3,6 @@ package com.fernandes.damien.channelmessaging;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -44,7 +43,7 @@ public class LoginActivity extends Activity implements View.OnClickListener, OnD
             login.put("username", EditNom.getText().toString());
             login.put("password", EditPwd.getText().toString());
             Downloader d = new Downloader(getApplicationContext(), "http://www.raphaelbischof.fr/messaging/?function=connect", login, 1);
-           // d.setOnDownloadComplete(this);
+            d.setOnDownloadComplete(this);
             d.execute();
 
         }

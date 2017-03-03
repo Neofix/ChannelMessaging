@@ -1,9 +1,10 @@
 package com.fernandes.damien.channelmessaging;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,7 +14,7 @@ import com.google.gson.Gson;
 
 import java.util.HashMap;
 
-public class LoginActivity extends Activity implements View.OnClickListener, OnDownloadListener {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener, OnDownloadListener {
     private EditText EditNom;
     private EditText EditPwd;
     private Button ButtonValider;
@@ -25,8 +26,8 @@ public class LoginActivity extends Activity implements View.OnClickListener, OnD
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        EditNom = (EditText) findViewById(R.id.editTextName);
-        EditPwd = (EditText) findViewById(R.id.editTextPwd);
+        EditNom = (EditText) findViewById(R.id.etPassword);
+        EditPwd = (EditText) findViewById(R.id.etIdentifiant);
 
         ButtonValider = (Button) findViewById(R.id.buttonValider);
         ButtonValider.setOnClickListener(this) ;

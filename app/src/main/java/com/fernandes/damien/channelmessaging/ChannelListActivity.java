@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -17,7 +18,7 @@ import java.util.HashMap;
  * Created by damien on 23/01/17.
  */
 
-public class ChannelListActivity extends Activity implements OnDownloadListener, AdapterView.OnItemClickListener{
+public class ChannelListActivity extends AppCompatActivity implements OnDownloadListener, AdapterView.OnItemClickListener{
     private ListView listechannel ;
     private String accesstoken;
     Channels channels = new Channels();

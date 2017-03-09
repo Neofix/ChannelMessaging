@@ -98,7 +98,7 @@ public class Downloader extends AsyncTask<Long,Integer,String> {
         return result.toString();
     }
 
-    protected void setOnDownloadComplete(OnDownloadListener listener)
+    public void setOnDownloadComplete(OnDownloadListener listener)
     {
         listeners.add(listener);
     }

@@ -3,7 +3,6 @@ package com.fernandes.damien.channelmessaging;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -76,7 +75,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     public void startChannelListActivity(){
-        Intent myIntent = new Intent(getApplicationContext(), ChannelListActivity.class);
+        Intent myIntent = new Intent(getApplicationContext(), ChannelMainActivity.class);
         startActivity(myIntent);
     }
 }

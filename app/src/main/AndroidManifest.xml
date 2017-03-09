@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ChannelListActivity"
+            android:name=".ChannelMainActivity"
             android:theme="@style/AppThemeNoActionBar"
             android:label="Liste des channels">
         </activity>

@@ -11,7 +11,8 @@
         android:id="@+id/imageView"
         android:layout_gravity="center_horizontal"
         android:src="@drawable/channel_messaging_logo"
-        android:tint="#000000" />
+        android:tint="#000000"
+        android:transitionName = "logo" />
 
     <ListView
         android:layout_marginTop="25dp"

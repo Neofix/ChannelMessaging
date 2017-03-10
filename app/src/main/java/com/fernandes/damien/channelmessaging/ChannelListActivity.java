@@ -33,6 +33,8 @@ public class ChannelListActivity extends AppCompatActivity implements OnDownload
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_channellist);
 
+
+
         listechannel = (ListView) findViewById(R.id.listViewChannel);
         HashMap<String,String> envoiAccess = new HashMap<>();
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);

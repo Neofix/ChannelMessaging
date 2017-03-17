@@ -1,20 +1,14 @@
 package com.fernandes.damien.channelmessaging;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.fernandes.damien.channelmessaging.fragments.ChannelConvFragment;
 import com.fernandes.damien.channelmessaging.fragments.ChannelListFragment;
-import com.google.gson.Gson;
-
-import java.util.HashMap;
 
 /**
  * Created by damien on 23/01/17.
@@ -49,13 +43,14 @@ public class ChannelMainActivity extends AppCompatActivity implements AdapterVie
         ChannelListFragment listChannel = (ChannelListFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentListChannel_ID);
         ChannelConvFragment convChannel = (ChannelConvFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentConvChannel_ID);
 
-        if(convChannel==null)
+        if(convChannel==null || !convChannel.isInLayout())
         {
             Intent i = new Intent(getApplicationContext(), ChannelConvActivity.class);
-            i.putExtra("id", listChannel.channels.getChannels().get(position));
+            i.putExtra("id", listChannel.channels.getChannels().get(position).getChannelID());
             i.putExtra("name", "YOLO");
             startActivity(i);
         }
+
         
     }
 }

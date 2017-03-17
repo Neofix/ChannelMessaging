@@ -48,6 +48,10 @@ public class ChannelListFragment extends Fragment implements OnDownloadListener{
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        fillView();
+    }
+
+    public void fillView(){
         HashMap<String,String> envoiAccess = new HashMap<>();
         SharedPreferences settings = getActivity().getSharedPreferences(PREFS_NAME, 0);
         accesstoken = settings.getString("accesstoken", null);

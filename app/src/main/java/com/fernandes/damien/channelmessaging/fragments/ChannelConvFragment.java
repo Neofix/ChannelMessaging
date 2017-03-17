@@ -28,7 +28,7 @@ import java.util.HashMap;
  * Created by fernandd on 09/03/2017.
  */
 public class ChannelConvFragment extends Fragment implements View.OnClickListener, OnDownloadListener {
-    private int channelid;
+    public int channelid;
     private String channelname;
     private String accesstoken;
     private Handler handler;
@@ -65,13 +65,15 @@ public class ChannelConvFragment extends Fragment implements View.OnClickListene
         final Runnable r = new Runnable() {
             @Override
             public void run() {
-                HashMap<String,String> envoiAccess = new HashMap<>();
-                envoiAccess.put("accesstoken", accesstoken);
-                envoiAccess.put("channelid", String.valueOf(channelid));
-                Downloader d = new Downloader(getActivity(), "http://www.raphaelbischof.fr/messaging/?function=getmessages",envoiAccess,0);
-                d.setOnDownloadComplete(ChannelConvFragment.this);
-                d.execute();
-                handler.postDelayed(this,1000);
+                if(getActivity()!=null) {
+                    HashMap<String, String> envoiAccess = new HashMap<>();
+                    envoiAccess.put("accesstoken", accesstoken);
+                    envoiAccess.put("channelid", String.valueOf(channelid));
+                    Downloader d = new Downloader(getActivity(), "http://www.raphaelbischof.fr/messaging/?function=getmessages", envoiAccess, 0);
+                    d.setOnDownloadComplete(ChannelConvFragment.this);
+                    d.execute();
+                    handler.postDelayed(this, 1000);
+                }
             }
         };
 
@@ -107,10 +109,12 @@ public class ChannelConvFragment extends Fragment implements View.OnClickListene
             messageAenvoyer.setText("");
 
         }
-        else {
+        else if (requestcode == 0){
             Gson gson = new Gson();
             reslisteMessage = gson.fromJson(result, Messages.class);
-            listemessage.setAdapter(new ChannelAdapter(getActivity(), R.layout.channellayout, reslisteMessage.getMessages()));
+            if(getActivity()!=null) {
+                listemessage.setAdapter(new ChannelAdapter(getActivity(), R.layout.channellayout, reslisteMessage.getMessages()));
+            }
         }
     }
 }

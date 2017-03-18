@@ -66,18 +66,23 @@ public class ChannelConvFragment extends Fragment implements View.OnClickListene
             @Override
             public void run() {
                 if(getActivity()!=null) {
-                    HashMap<String, String> envoiAccess = new HashMap<>();
-                    envoiAccess.put("accesstoken", accesstoken);
-                    envoiAccess.put("channelid", String.valueOf(channelid));
-                    Downloader d = new Downloader(getActivity(), "http://www.raphaelbischof.fr/messaging/?function=getmessages", envoiAccess, 0);
-                    d.setOnDownloadComplete(ChannelConvFragment.this);
-                    d.execute();
+                    fillView();
                     handler.postDelayed(this, 1000);
                 }
             }
         };
 
         handler.postDelayed(r,1000);
+    }
+
+    public void fillView()
+    {
+        HashMap<String, String> envoiAccess = new HashMap<>();
+        envoiAccess.put("accesstoken", accesstoken);
+        envoiAccess.put("channelid", String.valueOf(channelid));
+        Downloader d = new Downloader(getActivity(), "http://www.raphaelbischof.fr/messaging/?function=getmessages", envoiAccess, 0);
+        d.setOnDownloadComplete(ChannelConvFragment.this);
+        d.execute();
     }
 
     @Override

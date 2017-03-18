@@ -50,6 +50,10 @@ public class ChannelMainActivity extends AppCompatActivity implements AdapterVie
             i.putExtra("name", "YOLO");
             startActivity(i);
         }
+        else
+        {
+            convChannel.fillView();
+        }
 
         
     }

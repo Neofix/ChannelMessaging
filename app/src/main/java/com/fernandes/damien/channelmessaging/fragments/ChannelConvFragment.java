@@ -28,7 +28,7 @@ import java.util.HashMap;
  * Created by fernandd on 09/03/2017.
  */
 public class ChannelConvFragment extends Fragment implements View.OnClickListener, OnDownloadListener {
-    public int channelid;
+    public int channelid = 1;
     private String channelname;
     private String accesstoken;
     private Handler handler;

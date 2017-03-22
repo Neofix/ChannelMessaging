@@ -11,34 +11,35 @@
         android:background="@android:color/white" />
 
     <RelativeLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="0dp"
-        android:layout_alignParentBottom="true"
         android:background="@android:color/darker_gray"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
         android:weightSum="1">
 
         <EditText
+            android:id="@+id/editTextmessage"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:inputType="textPersonName"
-            android:ems="10"
-            android:id="@+id/editTextmessage"
-            android:background="@android:color/white"
-            android:layout_alignParentStart="false"
-            android:layout_alignParentLeft="true"
-            android:layout_marginTop="5dp"
+            android:layout_alignParentStart="true"
             android:layout_marginBottom="5dp"
-            android:layout_toLeftOf="@+id/buttonEnvoyer"/>
+            android:layout_marginTop="5dp"
+            android:layout_toLeftOf="@+id/buttonEnvoyer"
+            android:background="@android:color/white"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:textColor="@android:color/black" />
 
         <Button
-            android:text="Envoyer"
+            android:id="@+id/buttonEnvoyer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/buttonEnvoyer"
-            android:layout_alignParentRight="true"/>
+            android:layout_alignParentRight="true"
+            android:text="Envoyer" />
 
     </RelativeLayout>
 </RelativeLayout>

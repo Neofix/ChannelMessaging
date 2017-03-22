@@ -52,6 +52,7 @@ public class ChannelMainActivity extends AppCompatActivity implements AdapterVie
         }
         else
         {
+            convChannel.channelid = (int) id;
             convChannel.fillView();
         }
 

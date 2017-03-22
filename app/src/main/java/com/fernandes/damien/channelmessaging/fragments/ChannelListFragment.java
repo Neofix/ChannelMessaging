@@ -1,7 +1,10 @@
 package com.fernandes.damien.channelmessaging.fragments;
 
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -24,10 +27,9 @@ import java.util.HashMap;
  */
 public class ChannelListFragment extends Fragment implements OnDownloadListener{
 
-    private ListView listechannel ;
+    public ListView listechannel ;
     private String accesstoken;
     public Channels channels = new Channels();
-
 
     public static final String PREFS_NAME = "MyPrefsFile";
 
@@ -49,6 +51,7 @@ public class ChannelListFragment extends Fragment implements OnDownloadListener{
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         fillView();
+
     }
 
     public void fillView(){
@@ -60,6 +63,7 @@ public class ChannelListFragment extends Fragment implements OnDownloadListener{
         d.setOnDownloadComplete(this);
         d.execute();
         listechannel.setOnItemClickListener((ChannelMainActivity) getActivity());
+
     }
 
 
@@ -70,6 +74,10 @@ public class ChannelListFragment extends Fragment implements OnDownloadListener{
         channels=gson.fromJson(result, Channels.class);
         listechannel.setAdapter(new ChannelListArrayAdapter(getActivity().getApplicationContext(), R.layout.channellayout, channels.getChannels()));
 
+    }
+
+    public void HoverListColor(int position) {
+        ((ChannelListArrayAdapter) listechannel.getAdapter()).setSelectedItem(position);
     }
 
     /*@Override

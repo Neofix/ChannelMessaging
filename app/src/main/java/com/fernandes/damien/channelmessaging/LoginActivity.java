@@ -123,7 +123,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     public void startChannelListActivity(){
-        Intent myIntent = new Intent(getApplicationContext(), ChannelListActivity.class);
+        Intent myIntent = new Intent(getApplicationContext(), ChannelMainActivity.class);
         startActivity(myIntent);
     }
 }

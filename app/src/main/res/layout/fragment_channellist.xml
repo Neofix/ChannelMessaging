@@ -5,17 +5,18 @@
     android:background="@android:color/white">
 
     <ImageView
-        android:layout_marginTop="20dp"
+        android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="80dp"
-        android:id="@+id/imageView"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/channel_messaging_logo"
         android:tint="#000000" />
 
     <ListView
-        android:layout_marginTop="25dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:id="@+id/listViewChannel"
-        android:layout_marginLeft="15dp"/>
+        android:layout_width="388dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="25dp" />
 </LinearLayout>

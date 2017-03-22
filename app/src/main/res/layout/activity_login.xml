@@ -14,11 +14,12 @@
     android:background="#303030">
 
     <ImageView
-        android:layout_marginTop="20dp"
+        android:id="@+id/imageViewlogo"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:id="@+id/imageViewlogo"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/channel_messaging_logo" />
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/input_layout_identifiant"
@@ -57,14 +58,14 @@
     </android.support.design.widget.TextInputLayout>
 
     <Button
-        android:text="Valider"
+        android:id="@+id/buttonValider"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/editTextPwd"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="22dp"
-        android:id="@+id/buttonValider"
         android:background="#01bfa5"
+        android:text="Valider"
         android:textColor="#ffffff" />
 
     <TextView

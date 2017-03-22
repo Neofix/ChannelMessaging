@@ -1,6 +1,5 @@
 package com.fernandes.damien.channelmessaging;
 
-import android.app.ActivityOptions;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -69,9 +68,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         ButtonValider = (Button) findViewById(R.id.buttonValider);
         ButtonValider.setOnClickListener(this) ;
 
-
-
-
+        EditNom.setText("dfern");
+        EditPwd.setText("damienfernandes");
+        ButtonValider.performClick();
     }
 
     @Override
@@ -83,6 +82,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             Downloader d = new Downloader(getApplicationContext(), "http://www.raphaelbischof.fr/messaging/?function=connect", login, 1);
             d.setOnDownloadComplete(this);
             d.execute();
+
         }
     }
 
@@ -124,8 +124,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     public void startChannelListActivity(){
         Intent myIntent = new Intent(getApplicationContext(), ChannelListActivity.class);
-        startActivity(myIntent, ActivityOptions.makeSceneTransitionAnimation(LoginActivity.this, mIvLogo, "logo").toBundle());
-        this.finishAfterTransition();
-
+        startActivity(myIntent);
     }
 }

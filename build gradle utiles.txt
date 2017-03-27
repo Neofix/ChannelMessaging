@@ -1,0 +1,11 @@
+Notif Push : FCM
+Librairy : butterknife
+Requetes : Retrofit
+Chargement Imager : glide
+Inject dépendance : Dagger2
+java 8 sur Android : Guava
+Programmation réactive : RxJava
+Design Pattern : MVP
+Savoir ce qui a crash l'appli : Fabric(Crashlyptics)
+tests unitaire : Mockits
+BDD : Realm

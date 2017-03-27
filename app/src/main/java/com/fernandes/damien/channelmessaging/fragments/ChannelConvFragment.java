@@ -109,16 +109,40 @@ public class ChannelConvFragment extends Fragment implements View.OnClickListene
         {
             Gson gson = new Gson();
             Retour retour = gson.fromJson(result, Retour.class);
-            if(retour.getCode()==200)
-                Toast.makeText(getActivity(),"Message envoyé", Toast.LENGTH_SHORT).show();
-            messageAenvoyer.setText("");
+            if(retour != null && retour.getCode()==200) {
+                Toast.makeText(getActivity(), "Message envoyé", Toast.LENGTH_SHORT).show();
+                messageAenvoyer.setText("");
+            }
+            else
+            {
+                String messageErreur=null;
+                if (retour==null)
+                    messageErreur = "Vérifier votre connexion internet.";
+                else
+                    messageErreur = retour.getResponse();
+                Toast.makeText(getActivity(), "Erreur : " + messageErreur , Toast.LENGTH_SHORT);
+                if(retour==null)
+                    getActivity().finish();
+            }
+
 
         }
         else if (requestcode == 0){
             Gson gson = new Gson();
             reslisteMessage = gson.fromJson(result, Messages.class);
-            if(getActivity()!=null) {
+            if(reslisteMessage != null && getActivity()!=null) {
                 listemessage.setAdapter(new ChannelAdapter(getActivity(), R.layout.channellayout, reslisteMessage.getMessages()));
+            }
+            else
+            {
+                String messageErreur=null;
+                if (reslisteMessage==null)
+                    messageErreur = "Vérifier votre connexion internet.";
+                else
+                    messageErreur = "Erreur non identifié.";
+
+                getActivity().finish();
+                Toast.makeText(getActivity(), "Erreur : " + messageErreur , Toast.LENGTH_SHORT);
             }
         }
     }

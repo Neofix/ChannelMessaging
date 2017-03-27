@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.fernandes.damien.channelmessaging.ChannelMainActivity;
 import com.fernandes.damien.channelmessaging.ChannelListArrayAdapter;
@@ -70,9 +71,16 @@ public class ChannelListFragment extends Fragment implements OnDownloadListener{
 
     @Override
     public void OnDownloadComplete(String result, int requestcode) {
-        Gson gson = new Gson();
-        channels=gson.fromJson(result, Channels.class);
-        listechannel.setAdapter(new ChannelListArrayAdapter(getActivity().getApplicationContext(), R.layout.channellayout, channels.getChannels()));
+        if(result!=null) {
+            Gson gson = new Gson();
+            channels = gson.fromJson(result, Channels.class);
+            listechannel.setAdapter(new ChannelListArrayAdapter(getActivity().getApplicationContext(), R.layout.channellayout, channels.getChannels()));
+        }
+        else
+        {
+            Toast.makeText(getActivity(), "Erreur : Vérifier votre connexion internet.", Toast.LENGTH_SHORT);
+            getActivity().finish();
+        }
 
     }
 

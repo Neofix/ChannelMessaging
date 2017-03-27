@@ -92,18 +92,25 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         boolean isConnected = false;
         SharedPreferences.Editor editor = settings.edit();
         Retour leRetour = gson.fromJson(result, Retour.class);
-        String accesstoken = leRetour.getAccesstoken();
+        String accesstoken=null;
         String message = "";
-        if (leRetour.getCode() == 200) {
+        if (leRetour !=null && leRetour.getCode() == 200) {
             message = "Connexion réussie !";
+            accesstoken = leRetour.getAccesstoken();
             isConnected = true;
+            editor.putString("accesstoken",accesstoken);
+            editor.commit();
         }
         else {
-            message = "Erreur : " + leRetour.getResponse();
+            String messageErreur=null;
+            if (leRetour==null)
+                messageErreur = "Vérifier votre connexion internet.";
+            else
+                messageErreur = leRetour.getResponse();
+            message = "Erreur : " + messageErreur ;
             isConnected = false;
         }
-        editor.putString("accesstoken",accesstoken);
-        editor.commit();
+
         Toast.makeText(getApplicationContext(),message, Toast.LENGTH_SHORT).show();
         if(isConnected)
         {
